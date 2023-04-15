@@ -1,10 +1,10 @@
 export enum Professions {
 	'fighter' = 'fighter',
 	'mage' = 'mage',
-	'cleric' = 'cleric', 
-	'rogue' = 'rogue', 
+	'cleric' = 'cleric',
+	'rogue' = 'rogue',
 	'archer' = 'archer',
-	'lancer' = 'lancer',
+	'lancer' = 'lancer'
 }
 
 export interface Position {
@@ -29,3 +29,8 @@ export interface PlayerState {
 }
 
 export type Axis = 'x' | 'y';
+
+export type GameState = {
+	phase: 'placement' | 'battle';
+	roundCount: number;
+};

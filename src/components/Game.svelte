@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { player } from '../stores/playerState';
+	import { player, computer } from '../stores/playerState';
+
+	export let isComputer: Boolean = false;
 </script>
 
 <div>
-	<p>{$player.name}</p>
+	<p>{isComputer ? 'Computer' : $player.name}</p>
 	<slot />
 </div>
 

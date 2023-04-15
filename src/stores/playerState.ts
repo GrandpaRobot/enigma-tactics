@@ -32,3 +32,5 @@ function setPlayerState(defaultPlayerData: PlayerState) {
 }
 
 export const player = setPlayerState(playerDefault);
+
+export const computer = setPlayerState({ ...playerDefault, name: 'Computer' });
