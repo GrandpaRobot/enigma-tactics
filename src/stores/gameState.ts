@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
-import type { GameState } from '../types';
+import { GamePhases, type GameState } from '../types';
 
 const initialGame: GameState = {
-	phase: 'placement',
+	phase: GamePhases.waiting,
 	roundCount: 0
 };
 function setBoardState() {
@@ -10,8 +10,9 @@ function setBoardState() {
 
 	return {
 		subscribe,
-		reset: () => set(initialGame)
+		reset: () => set(initialGame),
+		setPhase: (phase: GamePhases) => update((game) => ({ ...game, phase }))
 	};
 }
 
-export const board = setBoardState();
+export const game = setBoardState();

@@ -30,7 +30,13 @@ export interface PlayerState {
 
 export type Axis = 'x' | 'y';
 
+export enum GamePhases {
+	'placement' = 'Place your army',
+	'battle' = 'Orchestrate your attack!',
+	'gameOver' = 'The game is over!',
+	'waiting' = 'Waiting for an opponent..'
+}
 export type GameState = {
-	phase: 'placement' | 'battle';
+	phase: GamePhases;
 	roundCount: number;
 };

@@ -5,22 +5,22 @@
 	import Board from '../../../components/Board.svelte';
 	import Game from '../../../components/Game.svelte';
 	import PlayerPanel from '../../../components/PlayerPanel/PlayerPanel.svelte';
+	import { game } from '../../../stores/gameState';
+	import { GamePhases } from '../../../types';
 
 	const socket = io();
 	export let data: PageData;
-	let readyStatus: boolean = false;
 	socket.emit('join-game', data.gameId, data.opponentType);
 	socket.on('game-joined', ({ ready }: { ready: boolean }) => {
-		readyStatus = ready;
+		if (ready) game.setPhase(GamePhases.placement);
 	});
 </script>
 
 <main>
 	<Game>
-		<h1>{readyStatus ? 'Ready to play' : 'Waiting on opponent...'}</h1>
+		<h1>{$game.phase}</h1>
 		<Board />
 		<PlayerPanel />
-		<button on:click={() => socket.emit('turn-over', data.gameId)}>Human</button>
 	</Game>
 </main>
 
